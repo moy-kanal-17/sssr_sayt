@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История СССР</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #960000, #450000);
+            color: #f2eeca;
+            text-align: center;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #animation-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+        }
+
+        .symbol {
+            position: absolute;
+        }   
+
+        #hammer {
+            top: 50px;
+            left: 150px; /* Ближе к серпу */
+            font-size: 100px;
+            color: #ffd700;
+            transform: rotate(0deg); /* Серп повернут вправо */
+            transform-origin: bottom right; /* Смещаем центр вращения к нижнему правому углу */
+            animation: hammer-move 2s ease-in-out forwards;
+        }
+
+        #sickle {
+            top: 150px;
+            left: 50px;
+            width: 120px;
+            height: 120px;
+            transform: rotate(180deg); /* Серп повернут вправо */
+            color: #ffd700;
+            transform-origin: center center;
+            animation: sickle-rotate 2s ease-in-out forwards;
+        }
+
+        /* Анимация молота */
+        @keyframes hammer-move {
+            0% {
+                transform: rotate(250deg) translateY(0); /* Исходное положение молота */
+                transform-origin: 100% 100%; /* Вращение вокруг нижней части молота */
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(-40deg) translateY(-90px); /* Поднятие молота вверх */
+                transform: rotate(-30deg);
+                transform: rotate(-40deg) translateY(-90px);
+            }
+        }
+
+        /* Анимация вращения серпа */
+        @keyframes sickle-rotate {
+            0% {
+                transform: rotate(20deg); /* Начальное положение */
+                transform-origin: 160% 160%;
+            }
+            50% {
+                transform: rotate(370deg); /* Вращение на 270 градусов */
+            }
+            100% {
+                transform: rotate(360deg); /* Полный оборот */
+            }
+        }
+
+        header {
+            display: none;
+            background: #a40000;
+            color: #ffd700;
+            padding: 60px 0;
+            border-bottom: 5px solid #ffd700;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .description {
+            display: none;
+            margin: 30px auto;
+            font-size: 1.5em;
+            line-height: 1.8;
+            text-align: justify;
+            max-width: 800px;
+            color: #f8e3b5;
+        }
+
+        .links {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: #ffd700;
+            background: #a40000;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .links a:hover {
+            background: #ffd700;
+            color: #a40000;
+            transform: scale(1.05);
+        }
+
+        .links a:active {
+            transform: scale(0.98);
+        }
+
+        /* Стили для кнопки смотреть видео */
+        .watch-video {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: #ffd700;
+            background: #a40000;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .watch-video:hover {
+            background: #ffd700;
+            color: #a40000;
+            transform: scale(1.05);
+        }
+
+        .watch-video:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container">
+        <i id="hammer" class="symbol fa-solid fa-hammer"></i>
+        <img id="sickle" src="sickle.webp" alt="Серп">
+    </div>
+
+    <header>
+        <h1>История СССР</h1>
+    </header>
+    <div class="description">
+        <p>
+            СССР (Союз Советских Социалистических Республик) — государство, существовавшее с 1922 по 1991 годы, которое 
+            объединило 15 республик с различными культурами, языками и традициями. Его история насыщена драматическими 
+            событиями, включая индустриализацию, Вторую мировую войну, холодную войну, освоение космоса, и многое другое.
+        </p>
+        <p>
+            В то время как успехи в науке и технике, такие как запуск первого спутника и полёт Гагарина, подняли престиж 
+            СССР на мировой арене, годы правления сопровождались также сложными периодами репрессий и политических чисток. 
+            История Советского Союза оставила глубокий след в мировой истории.
+        </p>
+    </div>
+    <div class="links">
+        <a href="war.html">Великая Отечественная война</a>
+        <a href="stalin.html">Иосиф Сталин</a>
+        <a href="space.html">Космическая гонка</a>
+    </div>
+
+    <!-- Кнопка Смотреть Видео -->
+<!-- Кнопка Смотреть Видео -->
+<a href="istori.html" class="watch-video">Смотреть видео из ютуба</a>
+
+
+    <script>
+        // Анимация удара серпа и молота
+        setTimeout(() => {
+            const animationContainer = document.getElementById('animation-container');
+            animationContainer.style.display = 'none'; // Скрыть анимацию
+
+            // Показать основной контент
+            document.querySelector('header').style.display = 'block';
+            document.querySelector('.description').style.display = 'block';
+            document.querySelector('.links').style.display = 'flex';
+        }, 2000); // Показать контент через 2 секунды после анимации
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История СССР - Смотреть Видео</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #960000;
+            color: #f2eeca;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 20px;
+        }
+
+        .video-container {
+            margin-top: 50px;
+        }
+
+        iframe {
+            width: 70%;
+            height: 800px;
+            border: none;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: #ffd700;
+            background: #a40000;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            visibility: hidden; /* Скрыта по умолчанию */
+        }
+
+        .back-button:hover {
+            background: #ffd700;
+            color: #a40000;
+            transform: scale(1.05);
+        }
+
+        .back-button:active {
+            transform: scale(0.98);
+        }
+
+        .video-links {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+
+        .video-links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #ffd700;
+            background: #a40000;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .video-links a:hover {
+            background: #ffd700;
+            color: #a40000;
+            transform: scale(1.05);
+        }
+
+        .video-links a:active {
+            transform: scale(0.98);
+        }
+
+        .video-links a.hidden {
+            visibility: hidden; /* Скрывает кнопки */
+        }
+    </style>
+</head>
+<body>
+    <h1>История СССР - Смотреть Видео</h1>
+    
+    <div class="video-container">
+        <!-- Вставляем видео через iframe -->
+        <iframe id="video-frame" src="https://www.youtube.com/embed/EQZqnedt3iI" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-links" id="video-links">
+        <a href="#" onclick="changeVideo('EQZqnedt3iI', 'История СССР: Важнейшие моменты', 1)" id="video-1">История СССР: Важнейшие моменты</a>
+        <a href="#" onclick="changeVideo('QM3hGeLUkZY', 'Технология в СССР', 2)" id="video-2">Технология в СССР</a>
+        <a href="#" onclick="changeVideo('QheWlG8iRhE', 'Технология в годы СССР', 3)" id="video-3">Технология в годы СССР</a>
+        <a href="#" onclick="changeVideo('eu3faRyEQJI', 'Раньше было лучше?', 4)" id="video-4">Раньше было лучше?</a>
+    </div>
+
+    <!-- Кнопка для возврата на главную -->
+    <a href="index.html" class="back-button" id="back-button">Назад на главную</a>
+
+    <script>
+        let currentVideoId = null; // Хранит текущий ID видео
+        let lastSelectedButton = null; // Хранит последний выбранный ID кнопки
+
+        // Функция для изменения видео
+        function changeVideo(videoId, videoTitle, videoNumber) {
+            // Если видео уже выбрано, то ничего не делаем
+            if (currentVideoId === videoId) {
+                return;
+            }
+
+            // Меняем источник видео
+            var iframe = document.getElementById('video-frame');
+            iframe.src = "https://www.youtube.com/embed/" + videoId;
+
+            // Меняем название страницы в заголовке (если нужно)
+            document.title = videoTitle;
+
+            // Скрываем кнопку видео
+            var currentButton = document.getElementById('video-' + videoNumber);
+            currentButton.classList.add('hidden'); // Скрываем текущую кнопку
+
+            // Показываем кнопку "Назад на главную"
+            var backButton = document.getElementById('back-button');
+            backButton.style.visibility = 'visible';
+
+            // Сохраняем текущий видео ID
+            currentVideoId = videoId;
+
+            // Сделать доступными все остальные кнопки, кроме текущей
+            var videoLinks = document.getElementById('video-links').children;
+            for (let i = 0; i < videoLinks.length; i++) {
+                if (videoLinks[i] !== currentButton) {
+                    videoLinks[i].classList.remove('hidden');
+                }
+            }
+        }
+
+        // Функция для возврата к предыдущим кнопкам
+        function goBack() {
+            // Показываем все кнопки видео снова
+            var videoLinks = document.getElementById('video-links').children;
+            for (let i = 0; i < videoLinks.length; i++) {
+                videoLinks[i].classList.remove('hidden');
+            }
+
+            // Скрываем кнопку "Назад на главную"
+            var backButton = document.getElementById('back-button');
+            backButton.style.visibility = 'hidden';
+
+            // Очищаем iframe
+            var iframe = document.getElementById('video-frame');
+            iframe.src = "";
+
+            // Сбрасываем текущий выбранный видео ID
+            currentVideoId = null;
+        }
+
+        // Изначально кнопка возврата скрыта
+        document.getElementById('back-button').onclick = goBack;
+    </script>
+</body>
+</html>

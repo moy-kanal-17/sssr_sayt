@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космическая гонка</title>
+    <style>
+        /* Общий стиль для страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #001f3f, #004080);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 2px solid #ffcc00;
+            z-index: 2;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #ffcc00;
+        }
+
+        .content {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        img {
+            max-width: 80%;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            filter: grayscale(100%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+
+        img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        p {
+            font-size: 1.5em;
+            line-height: 1.8;
+            text-align: justify;
+            color: #e0f7fa;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        a:hover {
+            background: #ffcc00;
+            color: #002e5d;
+        }
+
+        /* Стиль для звёзд на фоне */
+        .background-star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Стиль для звёзд, следующих за мышкой */
+        .star {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: starFade 1s linear forwards;
+        }
+
+        @keyframes starFade {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Космическая гонка</h1>
+</header>
+
+<div class="content">
+    <img src="Гагарин.jpg" alt="Юрий Гагарин, первый человек в космосе">
+    <p>
+        СССР стал пионером в освоении космоса. В 1957 году был запущен первый искусственный спутник «Спутник-1». 
+        В 1961 году Юрий Гагарин стал первым человеком в космосе, а в 1963 году Валентина Терешкова — первой женщиной-космонавтом. 
+        Эти достижения укрепили престиж СССР на мировой арене.
+    </p>
+    <a href="index.html">Назад на главную</a>
+</div>
+
+<!-- Скрипт для создания звёзд на фоне -->
+<script>
+    // Создаём случайные звёзды на фоне
+    function createBackgroundStars() {
+        for (let i = 0; i < 150; i++) { // Количество звёзд
+            const star = document.createElement("div");
+            star.className = "background-star";
+            star.style.width = star.style.height = `${Math.random() * 4 + 2}px`; // Размер звезды от 2 до 6 пикселей
+            star.style.left = `${Math.random() * window.innerWidth}px`;
+            star.style.top = `${Math.random() * window.innerHeight}px`;
+
+            document.body.appendChild(star);
+        }
+    }
+
+    createBackgroundStars();
+</script>
+
+<!-- Скрипт для создания звёзд, следующих за мышкой -->
+<script>
+    // Обработчик движения мышки
+    document.addEventListener("mousemove", (e) => {
+        const star = document.createElement("div");
+        star.className = "star";
+
+        // Устанавливаем позицию звезды
+        star.style.left = `${e.pageX}px`;
+        star.style.top = `${e.pageY}px`;
+
+        // Случайный размер звезды
+        const size = Math.random() * 8 + 4; // Размер от 4 до 12 пикселей
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Добавляем звезду на страницу
+        document.body.appendChild(star);
+
+        // Удаляем звезду через 1 секунду
+        setTimeout(() => {
+            star.remove();
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>

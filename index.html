@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1866102808127468"
+    crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>История СССР</title>
@@ -13,7 +17,7 @@
             background: linear-gradient(135deg, #960000, #450000);
             color: #f2eeca;
             text-align: center;
-            overflow: auto;
+            overflow: hidden;
             height: 100vh;
         }
 
@@ -32,11 +36,11 @@
 
         #hammer {
             top: 50px;
-            left: 150px; /* Ближе к серпу */
+            left: 150px;
             font-size: 100px;
             color: #ffd700;
-            transform: rotate(0deg); /* Серп повернут вправо */
-            transform-origin: bottom right; /* Смещаем центр вращения к нижнему правому углу */
+            transform: rotate(0deg);
+            transform-origin: bottom right;
             animation: hammer-move 2s ease-in-out forwards;
         }
 
@@ -45,37 +49,32 @@
             left: 50px;
             width: 120px;
             height: 120px;
-            transform: rotate(180deg); /* Серп повернут вправо */
+            transform: rotate(180deg);
             color: #ffd700;
             transform-origin: center center;
             animation: sickle-rotate 2s ease-in-out forwards;
         }
 
-        /* Анимация молота */
         @keyframes hammer-move {
             0% {
-                transform: rotate(250deg) translateY(0); /* Исходное положение молота */
-                transform-origin: 100% 100%; /* Вращение вокруг нижней части молота */
-                transform: rotate(360deg);
+                transform: rotate(250deg) translateY(0);
+                transform-origin: 100% 100%;
             }
             100% {
-                transform: rotate(-40deg) translateY(-90px); /* Поднятие молота вверх */
-                transform: rotate(-30deg);
                 transform: rotate(-40deg) translateY(-90px);
             }
         }
 
-        /* Анимация вращения серпа */
         @keyframes sickle-rotate {
             0% {
-                transform: rotate(20deg); /* Начальное положение */
+                transform: rotate(20deg);
                 transform-origin: 160% 160%;
             }
             50% {
-                transform: rotate(370deg); /* Вращение на 270 градусов */
+                transform: rotate(370deg);
             }
             100% {
-                transform: rotate(360deg); /* Полный оборот */
+                transform: rotate(360deg);
             }
         }
 
@@ -134,8 +133,7 @@
             transform: scale(0.98);
         }
 
-        /* Стили для кнопки смотреть видео */
-        .watch-video {
+        .watch-video, .boosty-link {
             display: inline-block;
             margin-top: 20px;
             padding: 15px 30px;
@@ -149,13 +147,13 @@
             transition: background 0.3s ease, transform 0.3s ease;
         }
 
-        .watch-video:hover {
+        .watch-video:hover, .boosty-link:hover {
             background: #ffd700;
             color: #a40000;
             transform: scale(1.05);
         }
 
-        .watch-video:active {
+        .watch-video:active, .boosty-link:active {
             transform: scale(0.98);
         }
     </style>
@@ -188,9 +186,9 @@
     </div>
 
     <!-- Кнопка Смотреть Видео -->
-<!-- Кнопка Смотреть Видео -->
-<a href="istori.html" class="watch-video">Смотреть видео из ютуба</a>
-
+    <a href="istori.html" class="watch-video">Смотреть видео из ютуба</a>
+    <!-- Кнопка Boosty -->
+    <a href="https://boosty.to/moy-17" class="boosty-link">Поддержать на Boosty</a>
 
     <script>
         // Анимация удара серпа и молота

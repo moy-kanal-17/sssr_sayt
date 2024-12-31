@@ -16,7 +16,6 @@
             color: #f2eeca;
             text-align: center;
             overflow: auto;
-            height: 100vh;
         }
 
         #animation-container {
@@ -37,7 +36,6 @@
             left: 150px;
             font-size: 100px;
             color: #ffd700;
-            transform: rotate(0deg);
             transform-origin: bottom right;
             animation: hammer-move 2s ease-in-out forwards;
         }
@@ -47,7 +45,6 @@
             left: 50px;
             width: 120px;
             height: 120px;
-            transform: rotate(180deg);
             color: #ffd700;
             transform-origin: center center;
             animation: sickle-rotate 2s ease-in-out forwards;
@@ -55,18 +52,16 @@
 
         @keyframes hammer-move {
             0% {
-                transform: rotate(250deg) translateY(0);
-                transform-origin: 100% 100%;
+                transform: rotate(250deg);
             }
             100% {
-                transform: rotate(-40deg) translateY(-90px);
+                transform: rotate(-40deg);
             }
         }
 
         @keyframes sickle-rotate {
             0% {
                 transform: rotate(20deg);
-                transform-origin: 160% 160%;
             }
             50% {
                 transform: rotate(370deg);
@@ -80,7 +75,7 @@
             display: none;
             background: #a40000;
             color: #ffd700;
-            padding: 60px 0;
+            padding: 20px 0;
             border-bottom: 5px solid #ffd700;
         }
 
@@ -127,8 +122,26 @@
             transform: scale(1.05);
         }
 
-        .links a:active {
-            transform: scale(0.98);
+        .status-banner {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #ffd700;
+            color: #a40000;
+            padding: 10px;
+            font-size: 1.2em;
+            text-align: center;
+            animation: fade-out 2s forwards 2s;
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
         }
 
         .watch-video, .boosty-link {
@@ -150,31 +163,6 @@
             color: #a40000;
             transform: scale(1.05);
         }
-
-        .watch-video:active, .boosty-link:active {
-            transform: scale(0.98);
-        }
-
-        /* Стиль для баннера о статусе сайта */
-        .status-banner {
-            background-color: #ffd700;
-            padding: 20px;
-            color: #a40000;
-            margin-top: 30px;
-            font-size: 1.2em;
-            text-align: center;
-            border-radius: 10px;
-        }
-
-        .status-banner a {
-            color: #a40000;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .status-banner a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -183,15 +171,10 @@
         <img id="sickle" src="sickle.webp" alt="Серп">
     </div>
 
-    <!-- Рекламный блок Google Ads -->
-    <ins class="adsbygoogle"
-         style="display:block; margin: 20px 0;"
-         data-ad-client="ca-pub-1866102808127468"
-         data-ad-slot="1234567890"
-         data-ad-format="auto"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <!-- Полоска-уведомление -->
+    <div class="status-banner">
+        Сайт загружается! Немного терпения.
+    </div>
 
     <header>
         <h1>История СССР</h1>
@@ -199,42 +182,28 @@
     <div class="description">
         <p>
             СССР (Союз Советских Социалистических Республик) — государство, существовавшее с 1922 по 1991 годы, которое 
-            объединило 15 республик с различными культурами, языками и традициями. Его история насыщена драматическими 
-            событиями, включая индустриализацию, Вторую мировую войну, холодную войну, освоение космоса, и многое другое.
-        </p>
-        <p>
-            В то время как успехи в науке и технике, такие как запуск первого спутника и полёт Гагарина, подняли престиж 
-            СССР на мировой арене, годы правления сопровождались также сложными периодами репрессий и политических чисток. 
-            История Советского Союза оставила глубокий след в мировой истории.
+            объединило 15 республик с различными культурами, языками и традициями.
         </p>
     </div>
-
-    <!-- Баннер о статусе сайта -->
-
 
     <div class="links">
         <a href="war.html">Великая Отечественная война</a>
         <a href="stalin.html">Иосиф Сталин</a>
-<a href="about.html">планы и что будит? и что надо?</a>
+        <a href="about.html">Планы и что будет</a>
         <a href="space.html">Космическая гонка</a>
     </div>
 
-    <!-- Кнопка Смотреть Видео -->
-    <a href="istori.html" class="watch-video">Смотреть видео из ютуба</a>
-    <!-- Кнопка Boosty -->
-    <a href="https://boosty.to/moy-17" class="boosty-link">Поддержать на Boosty</a>
+    <a href="istori.html" class="watch-video">Смотреть видео</a>
+    <a href="https://boosty.to/moy-17" class="boosty-link">Поддержать проект</a>
 
     <script>
-        // Анимация удара серпа и молота
+        // Анимация завершения
         setTimeout(() => {
-            const animationContainer = document.getElementById('animation-container');
-            animationContainer.style.display = 'none'; // Скрыть анимацию
-
-            // Показать основной контент
-            document.querySelector('header').style.display = 'block';
-            document.querySelector('.description').style.display = 'block';
-            document.querySelector('.links').style.display = 'flex';
-        }, 2000); // Показать контент через 2 секунды после анимации
+            document.getElementById('animation-container').style.display = 'none'; // Скрыть анимацию
+            document.querySelector('header').style.display = 'block'; // Показать заголовок
+            document.querySelector('.description').style.display = 'block'; // Показать описание
+            document.querySelector('.links').style.display = 'flex'; // Показать ссылки
+        }, 2000);
     </script>
 </body>
 </html>
